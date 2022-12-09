@@ -1,0 +1,31 @@
+{
+  "name": "multi-step-form",
+  "version": "1.0.0",
+  "description": "A solution to the multi-step form challenge on Frontend Mentor.",
+  "source": "src/index.html",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build"
+  },
+  "browserslist": [
+    "defaults"
+  ],
+  "author": "Luis Cedillo",
+  "license": "ISC",
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.3",
+    "eslint": "^8.29.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-react": "^7.31.11",
+    "eslint-plugin-tailwindcss": "^3.7.1",
+    "parcel": "^2.8.1",
+    "postcss": "^8.4.19",
+    "prettier": "^2.8.1",
+    "process": "^0.11.10",
+    "tailwindcss": "^3.2.4"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
