@@ -9,20 +9,6 @@ import bgBarDesktop from './images/bg-sidebar-desktop.svg';
 import bgBarMobile from './images/bg-sidebar-mobile.svg';
 import './index.css';
 
-const STEP_WRITING = [
-  [
-    'Personal info',
-    'Please provide your name, email address, and phone number.',
-  ],
-  ['Select your plan', 'You have the option of monthly or yearly billing.'],
-  ['Pick your add-ons', 'Add-ons help enhance your gaming experience.'],
-  ['Finishing up', 'Double-check everything is looks OK before confirming.'],
-  [
-    'Thank You!',
-    'Thanks for confirming your subscription! We hope you have fun using our platform. If you ever need support, please feel free to email us at support@loremgaming.com.',
-  ],
-];
-
 const MON_PRICES = {
   arcade: 9,
   advanced: 12,
@@ -32,7 +18,6 @@ const MON_PRICES = {
   customProfile: 2,
 };
 const YEARLY_MULTI = 10;
-
 const STEPS = 4;
 
 function App() {
@@ -51,8 +36,10 @@ function App() {
   });
   const multi = info.yearly ? YEARLY_MULTI : 1;
 
-  const step1Form = (
+  const userInfo = (
     <>
+      <h1>Personal info</h1>
+      <p>Please provide your name, email address, and phone number.</p>
       <InputText
         type={'text'}
         label={'Name'}
@@ -71,8 +58,10 @@ function App() {
     </>
   );
 
-  const step2Form = (
+  const plan = (
     <>
+      <h1>Select your plan</h1>
+      <p>You have the option of monthly or yearly billing.</p>
       <RadioBtn
         plan={'Arcade'}
         price={MON_PRICES.arcade * multi}
@@ -93,14 +82,21 @@ function App() {
       />
       <div>
         <strong>Monthly</strong>
-        <Checkbox name={'yearly'} info={info} setInfo={info} toggleBtn={true} />
+        <Checkbox
+          name={'yearly'}
+          info={info}
+          setInfo={setInfo}
+          toggleBtn={true}
+        />
         <strong>Yearly</strong>
       </div>
     </>
   );
 
-  const step3Form = (
+  const addOns = (
     <>
+      <h1>Pick your add-ons</h1>
+      <p>Add-ons help enhance your gaming experience.</p>
       <Checkbox
         name={'Online service'}
         label={'Access to multiplayer games'}
@@ -125,22 +121,28 @@ function App() {
     </>
   );
 
-  const step4Form = <Cart info={info} MON_PRICES={MON_PRICES} multi={multi} />;
+  const summary = (
+    <>
+      <h1>Finishing up</h1>
+      <p>Double-check everything is looks OK before confirming.</p>
+      <Cart info={info} MON_PRICES={MON_PRICES} multi={multi} />
+    </>
+  );
 
-  let displayedStepForm;
+  let displayedStep;
 
   switch (step) {
     case 1:
-      displayedStepForm = step2Form;
+      displayedStep = plan;
       break;
     case 2:
-      displayedStepForm = step3Form;
+      displayedStep = addOns;
       break;
     case 3:
-      displayedStepForm = step4Form;
+      displayedStep = summary;
       break;
     default:
-      displayedStepForm = step1Form;
+      displayedStep = userInfo;
   }
 
   return (
@@ -155,9 +157,7 @@ function App() {
       </picture>
 
       <main>
-        <h1>{STEP_WRITING[step][0]}</h1>
-        <p>{STEP_WRITING[step][1]}</p>
-        <form>{displayedStepForm}</form>
+        <form>{displayedStep}</form>
       </main>
 
       <nav>
@@ -173,7 +173,7 @@ function App() {
         {step < STEPS ? (
           <FormBtn
             submit={false}
-            forward={false}
+            forward={true}
             text={'Next Step'}
             step={step}
             setStep={setStep}

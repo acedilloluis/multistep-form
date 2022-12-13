@@ -31,7 +31,7 @@ function RadioBtn({ plan, price, info, setInfo }) {
 
 RadioBtn.propTypes = {
   plan: PropTypes.string,
-  price: PropTypes.string,
+  price: PropTypes.number,
   info: PropTypes.object,
   setInfo: PropTypes.func,
 };
