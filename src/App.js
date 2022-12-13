@@ -1,10 +1,148 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import bgBarDesktop from '../images/bg-sidebar-desktop.svg';
-import bgBarMobile from '../images/bg-sidebar-mobile.svg';
+import InputText from './components/InputText';
+import Checkbox from './components/Checkbox';
+import RadioBtn from './components/RadioBtn';
+import FormBtn from './components/FormBtn';
+import Cart from './components/Cart';
+import bgBarDesktop from './images/bg-sidebar-desktop.svg';
+import bgBarMobile from './images/bg-sidebar-mobile.svg';
 import './index.css';
 
+const STEP_WRITING = [
+  [
+    'Personal info',
+    'Please provide your name, email address, and phone number.',
+  ],
+  ['Select your plan', 'You have the option of monthly or yearly billing.'],
+  ['Pick your add-ons', 'Add-ons help enhance your gaming experience.'],
+  ['Finishing up', 'Double-check everything is looks OK before confirming.'],
+  [
+    'Thank You!',
+    'Thanks for confirming your subscription! We hope you have fun using our platform. If you ever need support, please feel free to email us at support@loremgaming.com.',
+  ],
+];
+
+const MON_PRICES = {
+  arcade: 9,
+  advanced: 12,
+  pro: 15,
+  onlineService: 1,
+  largerStorage: 2,
+  customProfile: 2,
+};
+const YEARLY_MULTI = 10;
+
+const STEPS = 4;
+
 function App() {
+  const [step, setStep] = useState(0);
+  const [info, setInfo] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    plan: '',
+    yearly: false,
+    addOns: {
+      onlineService: [false, 'Online Service'],
+      largerStorage: [false, 'Larger Storage'],
+      customProfile: [false, 'Customize Profile'],
+    },
+  });
+  const multi = info.yearly ? YEARLY_MULTI : 1;
+
+  const step1Form = (
+    <>
+      <InputText
+        type={'text'}
+        label={'Name'}
+        placeholder={'e.g. Stephen King'}
+      />
+      <InputText
+        type={'email'}
+        label={'Email Address'}
+        placeholder={'e.g. stephenking@lorem.com'}
+      />
+      <InputText
+        type={'tel'}
+        label={'Phone Numer'}
+        placeholder={'e.g. +1 234 567 890'}
+      />
+    </>
+  );
+
+  const step2Form = (
+    <>
+      <RadioBtn
+        plan={'Arcade'}
+        price={MON_PRICES.arcade * multi}
+        info={info}
+        setInfo={setInfo}
+      />
+      <RadioBtn
+        plan={'Advanced'}
+        price={MON_PRICES.advanced * multi}
+        info={info}
+        setInfo={setInfo}
+      />
+      <RadioBtn
+        plan={'Pro'}
+        price={MON_PRICES.pro * multi}
+        info={info}
+        setInfo={setInfo}
+      />
+      <div>
+        <strong>Monthly</strong>
+        <Checkbox name={'yearly'} info={info} setInfo={info} toggleBtn={true} />
+        <strong>Yearly</strong>
+      </div>
+    </>
+  );
+
+  const step3Form = (
+    <>
+      <Checkbox
+        name={'Online service'}
+        label={'Access to multiplayer games'}
+        price={MON_PRICES.onlineService * multi}
+        info={info}
+        setInfo={setInfo}
+      />
+      <Checkbox
+        name={'Larger storage'}
+        label={'Extra 1TB of cloud save'}
+        price={MON_PRICES.largerStorage * multi}
+        info={info}
+        setInfo={setInfo}
+      />
+      <Checkbox
+        name={'Customizable Profile'}
+        label={'Custom theme on your profile'}
+        price={MON_PRICES.customProfile * multi}
+        info={info}
+        setInfo={setInfo}
+      />
+    </>
+  );
+
+  const step4Form = <Cart info={info} MON_PRICES={MON_PRICES} multi={multi} />;
+
+  let displayedStepForm;
+
+  switch (step) {
+    case 1:
+      displayedStepForm = step2Form;
+      break;
+    case 2:
+      displayedStepForm = step3Form;
+      break;
+    case 3:
+      displayedStepForm = step4Form;
+      break;
+    default:
+      displayedStepForm = step1Form;
+  }
+
   return (
     <>
       <picture>
@@ -15,6 +153,35 @@ function App() {
         />
         <img src={bgBarMobile} alt="" />
       </picture>
+
+      <main>
+        <h1>{STEP_WRITING[step][0]}</h1>
+        <p>{STEP_WRITING[step][1]}</p>
+        <form>{displayedStepForm}</form>
+      </main>
+
+      <nav>
+        {step > 0 ? (
+          <FormBtn
+            submit={false}
+            forward={false}
+            text={'Go Back'}
+            step={step}
+            setStep={setStep}
+          />
+        ) : null}
+        {step < STEPS ? (
+          <FormBtn
+            submit={false}
+            forward={false}
+            text={'Next Step'}
+            step={step}
+            setStep={setStep}
+          />
+        ) : (
+          <FormBtn submit={true} text={'Confirm'} />
+        )}
+      </nav>
     </>
   );
 }
