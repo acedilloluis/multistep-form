@@ -1,29 +1,32 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-function InputText({ type, label, placeholder }) {
-  const [input, setInput] = useState('');
-
+function InputText({ propName, type, label, placeholder, info, setInfo }) {
   return (
     <label>
       {label}
       <input
         type={type}
         name={label}
-        placeholder={`e.g. ${placeholder}`}
-        value={input}
+        placeholder={placeholder}
+        value={info[propName]}
         minLength={1}
         maxLength={50}
-        onChange={(e) => setInput(e.target.value)}
+        onChange={(e) => {
+          setInfo({ ...info, [propName]: e.target.value });
+        }}
       />
     </label>
   );
 }
 
 InputText.propTypes = {
+  propName: PropTypes.string,
   type: PropTypes.string,
   label: PropTypes.string,
   placeholder: PropTypes.string,
+  info: PropTypes.object,
+  setInfo: PropTypes.func,
 };
 
 export default InputText;

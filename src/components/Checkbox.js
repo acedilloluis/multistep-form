@@ -1,23 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-function Checkbox({ name, label, price, info, setInfo, toggleBtn }) {
-  const [checked, setChecked] = useState(false);
-  const priceLabel = info.yearly ? `+$${price}/yr` : `+$${price}/mo`;
+function Checkbox(props) {
+  const price = props.info.yearly
+    ? `+$${props.price}/yr`
+    : `+$${props.price}/mo`;
 
   const checkbox = (
     <label>
-      {name}
-      <span>{label}</span>
-      <span>{priceLabel}</span>
+      {props.title}
+      <span>{props.descr}</span>
+      <span>{price}</span>
       <input
         type="checkbox"
-        name={name}
-        checked={checked}
-        value={checked}
+        checked={props.info.addOns[props.propName]}
+        value={props.info.addOns[props.propName]}
         onChange={() => {
-          setChecked(!checked);
-          setInfo({ ...info, name: checked });
+          props.setInfo({
+            ...props.info,
+            addOns: {
+              ...props.info.addOns,
+              [props.propName]: !props.info.addOns[props.propName],
+            },
+          });
         }}
       />
     </label>
@@ -28,23 +33,22 @@ function Checkbox({ name, label, price, info, setInfo, toggleBtn }) {
       Switch to yearly or monthly plan.
       <input
         type="checkbox"
-        name={name}
-        checked={checked}
-        value={checked}
+        checked={props.info.addOns[props.propName]}
+        value={props.info.addOns[props.propName]}
         onChange={() => {
-          setChecked(!checked);
-          setInfo({ ...info, name: checked });
+          props.setInfo({ ...props.info, yearly: !props.info.yearly });
         }}
       />
     </label>
   );
 
-  return toggleBtn ? toggle : checkbox;
+  return props.toggleBtn ? toggle : checkbox;
 }
 
 Checkbox.propTypes = {
-  name: PropTypes.string,
-  label: PropTypes.string,
+  propName: PropTypes.string,
+  title: PropTypes.string,
+  descr: PropTypes.string,
   price: PropTypes.number,
   info: PropTypes.object,
   setInfo: PropTypes.func,

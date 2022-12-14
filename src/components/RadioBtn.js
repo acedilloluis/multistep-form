@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-function RadioBtn({ plan, price, info, setInfo }) {
-  const [checked, setChecked] = useState(false);
+function RadioBtn({ propName, planTitle, planIcon, price, info, setInfo }) {
   const priceLabel = info.yearly ? (
     <strong>
       {`$${price}/yr`}
@@ -14,15 +13,15 @@ function RadioBtn({ plan, price, info, setInfo }) {
 
   return (
     <label>
-      {plan}
+      <img src={planIcon} alt="" />
+      {planTitle}
       {priceLabel}
       <input
         type="radio"
         name="add-on"
-        value={plan}
+        value={propName}
         onChange={() => {
-          setChecked(!checked);
-          setInfo({ ...info, plan: plan });
+          setInfo({ ...info, plan: planTitle });
         }}
       />
     </label>
@@ -30,7 +29,9 @@ function RadioBtn({ plan, price, info, setInfo }) {
 }
 
 RadioBtn.propTypes = {
-  plan: PropTypes.string,
+  propName: PropTypes.string,
+  planTitle: PropTypes.string,
+  planIcon: PropTypes.string,
   price: PropTypes.number,
   info: PropTypes.object,
   setInfo: PropTypes.func,
