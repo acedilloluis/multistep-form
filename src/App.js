@@ -11,8 +11,15 @@ import bgBarMobile from './images/bg-sidebar-mobile.svg';
 import arcadeIcon from './images/icon-arcade.svg';
 import advancedIcon from './images/icon-advanced.svg';
 import proIcon from './images/icon-pro.svg';
+import thankUIcon from './images/icon-thank-you.svg';
 import './index.css';
-// For next time: finish updating state/code in cart i.e. move monthly price to new objects/update cart code
+
+const STEPS = {
+  info: 'Your Info',
+  plan: 'Select Plan',
+  addOns: 'Add-ons',
+  summary: 'Summary',
+};
 // Array info: type of HTML input, visible label, placeholder
 const USER_TEXT_INPUT = {
   name: ['text', 'Name', 'e.g. Stephen King'],
@@ -40,10 +47,9 @@ const MON_PRICES = {
   customProfile: 2,
 };
 const YEARLY_MULTI = 10;
-const STEPS = 4;
 
 function App() {
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(1);
   const [info, setInfo] = useState({
     name: '',
     email: '',
@@ -96,7 +102,7 @@ function App() {
 
   const plan = (
     <>
-      <h1>Select your plan</h1>
+      <h2>Select your plan</h2>
       <p>You have the option of monthly or yearly billing.</p>
       {planList}
       <div>
@@ -129,7 +135,7 @@ function App() {
 
   const addOns = (
     <>
-      <h1>Pick your add-ons</h1>
+      <h2>Pick your add-ons</h2>
       <p>Add-ons help enhance your gaming experience.</p>
       {addOnList}
     </>
@@ -137,7 +143,7 @@ function App() {
 
   const summary = (
     <>
-      <h1>Finishing up</h1>
+      <h2>Finishing up</h2>
       <p>Double-check everything looks OK before confirming.</p>
       <Cart
         info={info}
@@ -148,20 +154,35 @@ function App() {
     </>
   );
 
+  const thankU = (
+    <>
+      <img src={thankUIcon} alt="" />
+      <h2>Thank You!</h2>
+      <p>
+        Thanks for confirming your subscription! We hope you have fun using our
+        platform. If you ever need support, please feel free to email us at
+        support@loremgaming.com.
+      </p>
+    </>
+  );
+
   let displayedStep;
 
   switch (step) {
     case 1:
-      displayedStep = plan;
+      displayedStep = userInfo;
       break;
     case 2:
-      displayedStep = addOns;
+      displayedStep = plan;
       break;
     case 3:
+      displayedStep = addOns;
+      break;
+    case 4:
       displayedStep = summary;
       break;
     default:
-      displayedStep = userInfo;
+      displayedStep = thankU;
   }
 
   return (
@@ -175,14 +196,14 @@ function App() {
         <img src={bgBarMobile} alt="" />
       </picture>
 
-      <Pagination STEPS={STEPS} />
+      <Pagination STEPS={STEPS} step={step} />
 
       <main>
         <form>{displayedStep}</form>
       </main>
 
       <nav>
-        {step > 0 ? (
+        {step > 1 ? (
           <FormBtn
             submit={false}
             forward={false}
@@ -191,7 +212,7 @@ function App() {
             setStep={setStep}
           />
         ) : null}
-        {step < STEPS ? (
+        {displayedStep !== thankU ? (
           <FormBtn
             submit={false}
             forward={true}
