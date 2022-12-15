@@ -4,8 +4,8 @@ import Pagination from './components/Pagination';
 import InputText from './components/InputText';
 import Checkbox from './components/Checkbox';
 import RadioBtn from './components/RadioBtn';
-import FormBtn from './components/FormBtn';
 import Cart from './components/Cart';
+import Form from './components/Form';
 import bgBarDesktop from './images/bg-sidebar-desktop.svg';
 import bgBarMobile from './images/bg-sidebar-mobile.svg';
 import arcadeIcon from './images/icon-arcade.svg';
@@ -13,7 +13,10 @@ import advancedIcon from './images/icon-advanced.svg';
 import proIcon from './images/icon-pro.svg';
 import thankUIcon from './images/icon-thank-you.svg';
 import './index.css';
+import YearlyToggle from './components/YearlyToggle';
 
+// Add array for each entry in STEPS containing: pagination title, form title, form paragraph
+// First entry is considered the first step, the second entry the second step, etc.
 const STEPS = {
   info: 'Your Info',
   plan: 'Select Plan',
@@ -54,7 +57,7 @@ function App() {
     name: '',
     email: '',
     phone: '',
-    plan: '',
+    plan: 'Arcade',
     yearly: false,
     addOns: {
       onlineService: false,
@@ -79,11 +82,14 @@ function App() {
   });
 
   const userInfo = (
-    <>
-      <h1>Personal info</h1>
-      <p>Please provide your name, email address, and phone number.</p>
-      {inputList}
-    </>
+    <Form
+      id="step-1"
+      title="Personal Info"
+      para="Please provide your name, email address, and phone number."
+      list={inputList}
+      step={step}
+      setStep={setStep}
+    />
   );
 
   const planList = Object.keys(PLANS).map((key) => {
@@ -99,23 +105,19 @@ function App() {
       />
     );
   });
+  planList.push(<YearlyToggle key="toggle" info={info} setInfo={setInfo} />);
 
   const plan = (
-    <>
-      <h2>Select your plan</h2>
-      <p>You have the option of monthly or yearly billing.</p>
-      {planList}
-      <div>
-        <strong>Monthly</strong>
-        <Checkbox
-          name={'yearly'}
-          info={info}
-          setInfo={setInfo}
-          toggleBtn={true}
-        />
-        <strong>Yearly</strong>
-      </div>
-    </>
+    <Form
+      id="style-2"
+      title="Select Your Plan"
+      para="You have the option of monthly or yearly billing."
+      list={planList}
+      step={step}
+      setStep={setStep}
+      info={info}
+      setInfo={setInfo}
+    />
   );
 
   const addOnList = Object.keys(ADD_ONS).map((key) => {
@@ -134,24 +136,29 @@ function App() {
   });
 
   const addOns = (
-    <>
-      <h2>Pick your add-ons</h2>
-      <p>Add-ons help enhance your gaming experience.</p>
-      {addOnList}
-    </>
+    <Form
+      id="step-3"
+      title="Pick your add-ons"
+      para="Add-ons help enhance your gaming experience."
+      list={addOnList}
+      step={step}
+      setStep={setStep}
+    />
+  );
+
+  const cart = (
+    <Cart info={info} MON_PRICES={MON_PRICES} multi={multi} ADD_ONS={ADD_ONS} />
   );
 
   const summary = (
-    <>
-      <h2>Finishing up</h2>
-      <p>Double-check everything looks OK before confirming.</p>
-      <Cart
-        info={info}
-        MON_PRICES={MON_PRICES}
-        multi={multi}
-        ADD_ONS={ADD_ONS}
-      />
-    </>
+    <Form
+      id="step-4"
+      title="Finishing Up"
+      para="Double-check everything looks OK before confirming."
+      list={cart}
+      step={step}
+      setStep={setStep}
+    />
   );
 
   const thankU = (
@@ -198,32 +205,7 @@ function App() {
 
       <Pagination STEPS={STEPS} step={step} />
 
-      <main>
-        <form>{displayedStep}</form>
-      </main>
-
-      <nav>
-        {step > 1 ? (
-          <FormBtn
-            submit={false}
-            forward={false}
-            text={'Go Back'}
-            step={step}
-            setStep={setStep}
-          />
-        ) : null}
-        {displayedStep !== thankU ? (
-          <FormBtn
-            submit={false}
-            forward={true}
-            text={'Next Step'}
-            step={step}
-            setStep={setStep}
-          />
-        ) : (
-          <FormBtn submit={true} text={'Confirm'} />
-        )}
-      </nav>
+      <main>{displayedStep}</main>
     </>
   );
 }

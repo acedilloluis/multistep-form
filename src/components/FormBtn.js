@@ -1,30 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function FormBtn({ submit, forward, text, step, setStep }) {
-  let dupStep = step;
-  const submitBtn = <input type="submit" value={text} />;
-  const stepBtn = (
-    <button
-      type="button"
-      onClick={() => {
-        forward ? dupStep++ : dupStep--;
-        setStep(dupStep);
-      }}
-    >
-      {text}
+function FormBtn(props) {
+  const submitBtn = (
+    <button type="submit" form={props.id}>
+      {props.text}
+    </button>
+  );
+  const goBackBtn = (
+    <button type="button" onClick={() => props.goBack()}>
+      {props.text}
     </button>
   );
 
-  return submit ? submitBtn : stepBtn;
+  return props.submit ? submitBtn : goBackBtn;
 }
 
 FormBtn.propTypes = {
+  id: PropTypes.string,
   submit: PropTypes.bool,
-  forward: PropTypes.bool,
   text: PropTypes.string,
-  step: PropTypes.number,
-  setStep: PropTypes.func,
+  goBack: PropTypes.func,
 };
 
 export default FormBtn;

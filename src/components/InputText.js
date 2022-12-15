@@ -15,6 +15,7 @@ function InputText({ propName, type, label, placeholder, info, setInfo }) {
         onChange={(e) => {
           setInfo({ ...info, [propName]: e.target.value });
         }}
+        required="required"
       />
     </label>
   );

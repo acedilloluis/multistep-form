@@ -20,6 +20,7 @@ function RadioBtn({ propName, planTitle, planIcon, price, info, setInfo }) {
         type="radio"
         name="add-on"
         value={propName}
+        checked={info.plan === planTitle}
         onChange={() => {
           setInfo({ ...info, plan: planTitle });
         }}
