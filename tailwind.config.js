@@ -16,6 +16,7 @@ module.exports = {
       'magnolia': 'hsl(217, 100%, 97%)',
       'alabaster': 'hsl(231, 100%, 99%)',
       'white': 'hsl(0, 0%, 100%)',
+      'black': 'hsl(100, 100%, 100%)',
     },
     fontFamily: {
       sans: ['Ubuntu', 'sans-serif'],

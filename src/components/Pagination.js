@@ -5,13 +5,22 @@ function Pagination({ STEPS, step }) {
   const circleList = Object.keys(STEPS).map((key, i) => {
     // Need to shift i by 1 since step starts at 1
     return (
-      <div key={key} className={step === i + 1 ? 'bg-light-gray' : null}>
+      <li
+        key={key}
+        className={`ml-3 inline w-7 rounded-[50%] border border-solid border-white text-center font-medium ${
+          step === i + 1 ? 'bg-light-blue text-black' : 'text-white'
+        }`}
+      >
         {i + 1}
-      </div>
+      </li>
     );
   });
 
-  return <div>{circleList}</div>;
+  return (
+    <ol className="absolute top-1/4 flex w-full items-center justify-center">
+      {circleList}
+    </ol>
+  );
 }
 
 Pagination.propTypes = {

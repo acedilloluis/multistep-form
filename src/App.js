@@ -200,12 +200,16 @@ function App() {
           type="image/svg+xml"
           media="(min-width: 1076px)"
         />
-        <img src={bgBarMobile} alt="" />
+        <img
+          src={bgBarMobile}
+          alt=""
+          className="h-auto max-w-full object-center"
+        />
       </picture>
 
       <Pagination STEPS={STEPS} step={step} />
 
-      <main>{displayedStep}</main>
+      <main className="absolute">{displayedStep}</main>
     </>
   );
 }
