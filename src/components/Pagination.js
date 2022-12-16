@@ -17,7 +17,7 @@ function Pagination({ STEPS, step }) {
   });
 
   return (
-    <ol className="absolute top-1/4 flex w-full items-center justify-center">
+    <ol className="absolute top-[5%] flex w-full items-center justify-center">
       {circleList}
     </ol>
   );

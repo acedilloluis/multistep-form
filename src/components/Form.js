@@ -18,13 +18,21 @@ function Form(props) {
 
   return (
     <>
-      <form id={props.id} onSubmit={handleSubmit}>
-        <h1>{props.title}</h1>
-        <p>{props.para}</p>
+      <form
+        id={props.id}
+        onSubmit={handleSubmit}
+        className="absolute top-[15%] mx-4 h-min rounded-md border-2 bg-white px-4 py-6 font-sans"
+      >
+        <h1 className="mb-2 text-xl font-bold text-marine-blue">
+          {props.title}
+        </h1>
+        <p className="mb-2 text-base font-medium text-cool-gray">
+          {props.para}
+        </p>
         {props.list}
       </form>
 
-      <nav>
+      <nav className="absolute bottom-0 w-full bg-white">
         {props.id !== 'step-1' ? (
           <FormBtn submit={false} text="Go Back" goBack={goBack} />
         ) : null}

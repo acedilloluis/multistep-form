@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 
 function FormBtn(props) {
   const submitBtn = (
-    <button type="submit" form={props.id}>
+    <button
+      type="submit"
+      form={props.id}
+      className="float-right m-4 rounded-md bg-marine-blue p-3 text-base font-medium text-white"
+    >
       {props.text}
     </button>
   );

@@ -203,13 +203,13 @@ function App() {
         <img
           src={bgBarMobile}
           alt=""
-          className="h-auto max-w-full object-center"
+          className="h-auto max-w-full object-top"
         />
       </picture>
 
       <Pagination STEPS={STEPS} step={step} />
 
-      <main className="absolute">{displayedStep}</main>
+      <main>{displayedStep}</main>
     </>
   );
 }

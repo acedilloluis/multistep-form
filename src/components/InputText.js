@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 function InputText({ propName, type, label, placeholder, info, setInfo }) {
   return (
     <label>
-      {label}
+      <strong className="text-sm font-normal text-marine-blue">{label}</strong>
       <input
         type={type}
         name={label}
@@ -16,6 +16,7 @@ function InputText({ propName, type, label, placeholder, info, setInfo }) {
           setInfo({ ...info, [propName]: e.target.value });
         }}
         required="required"
+        className="mb-2 w-full text-base font-medium text-cool-gray"
       />
     </label>
   );
