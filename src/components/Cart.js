@@ -41,7 +41,7 @@ function Cart({ info, MON_PRICES, multi, ADD_ONS, setStep }) {
                 onClick={() => {
                   setStep(2);
                 }}
-                className="font-medium text-cool-gray underline"
+                className="font-medium text-cool-gray underline hover:text-purplish-blue"
               >
                 Change
               </button>
