@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Cart({ info, MON_PRICES, multi, ADD_ONS }) {
+function Cart({ info, MON_PRICES, multi, ADD_ONS, setStep }) {
   const plan = info.plan.toLowerCase();
   let total = MON_PRICES[plan] * multi;
 
@@ -15,26 +15,53 @@ function Cart({ info, MON_PRICES, multi, ADD_ONS }) {
       const addOnTitle = ADD_ONS[key][0];
       const addOnDescr = ADD_ONS[key][0];
       return (
-        <li key={addOnTitle}>
-          <span>{addOnDescr}</span>
-          <strong>{`+$${MON_PRICES[key] * multi}${priceSuffix}`}</strong>
+        <li
+          key={addOnTitle}
+          className="mb-2 flex items-center justify-between last:mb-0"
+        >
+          <span className="font-medium text-cool-gray">{addOnDescr}</span>
+          <strong className="font-normal text-marine-blue">
+            {`+$${MON_PRICES[key] * multi}${priceSuffix}`}
+          </strong>
         </li>
       );
     }
   });
 
   return (
-    <ul>
-      <li>
-        <span>{`${info.plan} (${planSuffix})`}</span>
-        <strong>{`$${MON_PRICES[plan] * multi}${priceSuffix}`}</strong>
-      </li>
-      {addOnList}
-      <li>
-        <span>{`Total (${totalSuffix})`}</span>
-        <strong>{`$${total}${priceSuffix}`}</strong>
-      </li>
-    </ul>
+    <>
+      <ul className="bg-magnolia p-4">
+        <li className="mb-2 flex items-center justify-between border-b border-b-light-gray pb-2">
+          <span className="font-medium text-marine-blue">
+            {`${info.plan} (${planSuffix})`}
+            <br />
+            <span>
+              <button
+                type="button"
+                onClick={() => {
+                  setStep(2);
+                }}
+                className="font-medium text-cool-gray underline"
+              >
+                Change
+              </button>
+            </span>
+          </span>
+          <strong className="font-bold text-marine-blue">
+            {`$${MON_PRICES[plan] * multi}${priceSuffix}`}
+          </strong>
+        </li>
+        {addOnList}
+      </ul>
+      <div className="flex w-full items-center justify-between p-4">
+        <span className="font-medium text-cool-gray">
+          {`Total (${totalSuffix})`}
+        </span>
+        <strong className="text-lg font-bold text-purplish-blue">
+          {`$${total}${priceSuffix}`}
+        </strong>
+      </div>
+    </>
   );
 }
 
@@ -43,6 +70,7 @@ Cart.propTypes = {
   MON_PRICES: PropTypes.object,
   multi: PropTypes.number,
   ADD_ONS: PropTypes.object,
+  setStep: PropTypes.func,
 };
 
 export default Cart;

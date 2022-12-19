@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function InputText({ propName, type, label, placeholder, info, setInfo }) {
+  // add styling for required tooltip
   return (
     <label>
       <strong className="text-sm font-normal text-marine-blue">{label}</strong>
@@ -16,7 +17,7 @@ function InputText({ propName, type, label, placeholder, info, setInfo }) {
           setInfo({ ...info, [propName]: e.target.value });
         }}
         required="required"
-        className="mb-2 w-full text-base font-medium text-cool-gray"
+        className="mb-2 w-full cursor-pointer rounded-md text-base font-medium text-marine-blue placeholder:text-cool-gray focus:border-purplish-blue focus:outline-none focus:ring-0 focus:ring-purplish-blue"
       />
     </label>
   );

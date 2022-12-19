@@ -4,15 +4,27 @@ import Checkbox from './Checkbox';
 
 function YearlyToggle(props) {
   return (
-    <div>
-      <strong>Monthly</strong>
+    <div className="flex items-center justify-center rounded-md bg-magnolia p-2">
+      <strong
+        className={`mr-4 font-medium ${
+          props.info.yearly ? 'text-cool-gray' : 'text-marine-blue'
+        }`}
+      >
+        Monthly
+      </strong>
       <Checkbox
         name="yearly"
         info={props.info}
         setInfo={props.setInfo}
         toggleBtn={true}
       />
-      <strong>Yearly</strong>
+      <strong
+        className={`ml-4 font-medium ${
+          props.info.yearly ? 'text-marine-blue' : 'text-cool-gray'
+        }`}
+      >
+        Yearly
+      </strong>
     </div>
   );
 }

@@ -6,6 +6,7 @@ import Checkbox from './components/Checkbox';
 import RadioBtn from './components/RadioBtn';
 import Cart from './components/Cart';
 import Form from './components/Form';
+import YearlyToggle from './components/YearlyToggle';
 import bgBarDesktop from './images/bg-sidebar-desktop.svg';
 import bgBarMobile from './images/bg-sidebar-mobile.svg';
 import arcadeIcon from './images/icon-arcade.svg';
@@ -13,7 +14,6 @@ import advancedIcon from './images/icon-advanced.svg';
 import proIcon from './images/icon-pro.svg';
 import thankUIcon from './images/icon-thank-you.svg';
 import './index.css';
-import YearlyToggle from './components/YearlyToggle';
 
 // Add array for each entry in STEPS containing: pagination title, form title, form paragraph
 // First entry is considered the first step, the second entry the second step, etc.
@@ -147,7 +147,13 @@ function App() {
   );
 
   const cart = (
-    <Cart info={info} MON_PRICES={MON_PRICES} multi={multi} ADD_ONS={ADD_ONS} />
+    <Cart
+      info={info}
+      MON_PRICES={MON_PRICES}
+      multi={multi}
+      ADD_ONS={ADD_ONS}
+      setStep={setStep}
+    />
   );
 
   const summary = (
@@ -162,15 +168,15 @@ function App() {
   );
 
   const thankU = (
-    <>
-      <img src={thankUIcon} alt="" />
-      <h2>Thank You!</h2>
-      <p>
+    <div className="absolute top-[15%] mx-4 flex h-min flex-col items-center justify-center rounded-md bg-white px-6 py-12 text-center font-sans">
+      <img src={thankUIcon} alt="" className="mb-2" />
+      <h2 className="text-xl font-bold text-marine-blue">Thank You!</h2>
+      <p className="text-base font-medium text-cool-gray">
         Thanks for confirming your subscription! We hope you have fun using our
         platform. If you ever need support, please feel free to email us at
         support@loremgaming.com.
       </p>
-    </>
+    </div>
   );
 
   let displayedStep;

@@ -12,7 +12,11 @@ function FormBtn(props) {
     </button>
   );
   const goBackBtn = (
-    <button type="button" onClick={() => props.goBack()}>
+    <button
+      type="button"
+      onClick={() => props.goBack()}
+      className="m-4 rounded-md p-3 text-base font-medium text-cool-gray hover:text-marine-blue"
+    >
       {props.text}
     </button>
   );

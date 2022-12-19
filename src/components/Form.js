@@ -21,7 +21,7 @@ function Form(props) {
       <form
         id={props.id}
         onSubmit={handleSubmit}
-        className="absolute top-[15%] mx-4 h-min rounded-md border-2 bg-white px-4 py-6 font-sans"
+        className="absolute top-[15%] mx-4 h-min rounded-md bg-white px-6 py-8 font-sans"
       >
         <h1 className="mb-2 text-xl font-bold text-marine-blue">
           {props.title}
