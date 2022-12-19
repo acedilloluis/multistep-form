@@ -6,7 +6,7 @@ function FormBtn(props) {
     <button
       type="submit"
       form={props.id}
-      className="float-right m-4 rounded-md bg-marine-blue p-3 text-base font-medium text-white"
+      className="float-right m-4 rounded-md bg-marine-blue p-3 text-base font-medium text-white hover:bg-pastel-blue"
     >
       {props.text}
     </button>

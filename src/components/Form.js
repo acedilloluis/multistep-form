@@ -36,7 +36,11 @@ function Form(props) {
         {props.id !== 'step-1' ? (
           <FormBtn submit={false} text="Go Back" goBack={goBack} />
         ) : null}
-        <FormBtn id={props.id} submit={true} text="Next Step" />
+        {props.id !== 'step-4' ? (
+          <FormBtn id={props.id} submit={true} text="Next Step" />
+        ) : (
+          <FormBtn id={props.id} submit={true} text="Confirm" />
+        )}
       </nav>
     </>
   );
