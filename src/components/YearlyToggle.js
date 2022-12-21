@@ -4,7 +4,7 @@ import Checkbox from './Checkbox';
 
 function YearlyToggle(props) {
   return (
-    <div className="flex items-center justify-center rounded-md bg-magnolia p-2">
+    <div className="flex items-center justify-center rounded-md bg-magnolia p-2 md:col-span-full">
       <strong
         className={`mr-4 font-medium ${
           props.info.yearly ? 'text-cool-gray' : 'text-marine-blue'

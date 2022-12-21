@@ -32,7 +32,7 @@ function Form(props) {
         {props.list}
       </form>
 
-      <nav className="absolute bottom-0 w-full bg-white sm:static">
+      <nav className="absolute bottom-0 w-full bg-white sm:static sm:px-6">
         {props.id !== 'step-1' ? (
           <FormBtn submit={false} text="Go Back" goBack={goBack} />
         ) : null}

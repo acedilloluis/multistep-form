@@ -112,13 +112,16 @@ function App() {
     );
   });
   planList.push(<YearlyToggle key="toggle" info={info} setInfo={setInfo} />);
+  const planContainer = (
+    <div className="md:grid md:grid-cols-3 md:gap-x-1">{planList}</div>
+  );
 
   const plan = (
     <Form
       id="style-2"
       title="Select Your Plan"
       para="You have the option of monthly or yearly billing."
-      list={planList}
+      list={planContainer}
       step={step}
       setStep={setStep}
       info={info}
