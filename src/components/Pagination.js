@@ -1,31 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Pagination({ STEPS, step }) {
-  const circleList = Object.keys(STEPS).map((key, i) => {
-    // Need to shift i by 1 since step starts at 1
-    return (
-      <li
-        key={key}
-        className={`ml-3 inline w-7 rounded-[50%] border border-solid border-white text-center font-medium ${
-          step === i + 1 ? 'bg-light-blue text-black' : 'text-white'
+function Pagination({ title, step, index }) {
+  return (
+    <li className="flex flex-initial items-center sm:mb-2">
+      <span
+        className={`m-2 rounded-[50%] border border-solid border-white px-1 text-center font-medium ${
+          step === index + 1 ? 'bg-light-blue text-black' : 'text-white'
         }`}
       >
-        {i + 1}
-      </li>
-    );
-  });
-
-  return (
-    <ol className="absolute top-[5%] flex w-full items-center justify-center">
-      {circleList}
-    </ol>
+        {index + 1}
+      </span>
+      <span className="hidden sm:inline ">
+        <span className="text-sm font-medium text-light-gray">
+          {`Step ${index + 1}`}
+        </span>
+        <br />
+        <strong className="text-base font-medium text-white">{title}</strong>
+      </span>
+    </li>
   );
 }
 
 Pagination.propTypes = {
-  STEPS: PropTypes.object,
+  title: PropTypes.string,
   step: PropTypes.number,
+  index: PropTypes.number,
 };
 
 export default Pagination;

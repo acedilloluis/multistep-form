@@ -67,6 +67,12 @@ function App() {
   });
   const multi = info.yearly ? YEARLY_MULTI : 1;
 
+  const paginationList = Object.keys(STEPS).map((key, index) => {
+    return (
+      <Pagination key={key} title={STEPS[key]} step={step} index={index} />
+    );
+  });
+
   const inputList = Object.keys(USER_TEXT_INPUT).map((key) => {
     return (
       <InputText
@@ -213,7 +219,9 @@ function App() {
         />
       </picture>
 
-      <Pagination STEPS={STEPS} step={step} />
+      <ol className="absolute top-[5%] flex w-full items-center justify-center sm:left-8 sm:top-8 sm:w-max sm:flex-col sm:items-start">
+        {paginationList}
+      </ol>
 
       <main className="sm:basis-4/5">{displayedStep}</main>
     </>
