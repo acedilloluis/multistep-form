@@ -168,7 +168,7 @@ function App() {
   );
 
   const thankU = (
-    <div className="absolute top-[15%] mx-4 flex h-min flex-col items-center justify-center rounded-md bg-white px-6 py-12 text-center font-sans">
+    <div className="absolute top-[15%] mx-4 flex h-min flex-col items-center justify-center rounded-md bg-white px-6 py-12 text-center font-sans sm:static">
       <img src={thankUIcon} alt="" className="mb-2" />
       <h2 className="text-xl font-bold text-marine-blue">Thank You!</h2>
       <p className="text-base font-medium text-cool-gray">
@@ -204,18 +204,18 @@ function App() {
         <source
           srcSet={bgBarDesktop}
           type="image/svg+xml"
-          media="(min-width: 1076px)"
+          media="(min-width: 640px)"
         />
         <img
           src={bgBarMobile}
           alt=""
-          className="h-auto max-w-full object-top"
+          className="h-auto max-w-full object-top sm:h-full sm:basis-1/5 sm:rounded-md sm:object-cover sm:object-center"
         />
       </picture>
 
       <Pagination STEPS={STEPS} step={step} />
 
-      <main>{displayedStep}</main>
+      <main className="sm:basis-4/5">{displayedStep}</main>
     </>
   );
 }

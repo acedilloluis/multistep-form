@@ -21,7 +21,7 @@ function Form(props) {
       <form
         id={props.id}
         onSubmit={handleSubmit}
-        className="absolute top-[15%] mx-4 h-min rounded-md bg-white px-6 py-8 font-sans"
+        className="absolute top-[15%] mx-4 h-min rounded-md bg-white px-6 py-8 font-sans sm:static"
       >
         <h1 className="mb-2 text-xl font-bold text-marine-blue">
           {props.title}
@@ -32,7 +32,7 @@ function Form(props) {
         {props.list}
       </form>
 
-      <nav className="absolute bottom-0 w-full bg-white">
+      <nav className="absolute bottom-0 w-full bg-white sm:static">
         {props.id !== 'step-1' ? (
           <FormBtn submit={false} text="Go Back" goBack={goBack} />
         ) : null}
