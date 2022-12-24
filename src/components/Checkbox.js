@@ -9,11 +9,22 @@ function Checkbox(props) {
   const checkbox = (
     <>
       <label
+        tabIndex={0}
         className={`relative mb-3 flex w-full cursor-pointer flex-nowrap items-center rounded-md border border-light-gray p-3 hover:border-purplish-blue hover:ring-0 hover:ring-purplish-blue ${
           props.info.addOns[props.propName]
             ? 'border-purplish-blue bg-magnolia outline-none ring-0 ring-purplish-blue'
             : null
         }`}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter')
+            props.setInfo({
+              ...props.info,
+              addOns: {
+                ...props.info.addOns,
+                [props.propName]: !props.info.addOns[props.propName],
+              },
+            });
+        }}
       >
         <input
           type="checkbox"

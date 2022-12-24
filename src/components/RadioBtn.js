@@ -7,11 +7,15 @@ function RadioBtn({ propName, planTitle, planIcon, price, info, setInfo }) {
   return (
     <label
       htmlFor={propName}
+      tabIndex={0}
       className={`mb-3 flex cursor-pointer items-center rounded-md border border-light-gray p-2 hover:border-purplish-blue md:col-span-1 md:flex-col ${
         info.plan === planTitle
           ? 'border-purplish-blue bg-magnolia outline-none ring-0 ring-purplish-blue'
           : null
       }`}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter') setInfo({ ...info, plan: planTitle });
+      }}
     >
       <img src={planIcon} alt="" />
       <strong className="ml-3 mt-8 text-lg font-medium text-marine-blue">
