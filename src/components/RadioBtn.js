@@ -18,7 +18,7 @@ function RadioBtn({ propName, planTitle, planIcon, price, info, setInfo }) {
       }}
     >
       <img src={planIcon} alt="" />
-      <strong className="ml-3 text-lg font-medium text-marine-blue md:mt-8">
+      <strong className="ml-3 text-lg font-medium text-marine-blue md:mt-8 md:ml-0">
         {planTitle}
         <span className="block text-sm font-medium text-cool-gray">
           {priceLabel}
