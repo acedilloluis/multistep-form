@@ -1,6 +1,6 @@
 # Frontend Mentor - Multi-step form solution
 
-This is a solution to the [Multi-step form challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/multistep-form-YVAnSdqQBJ). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
+This is a solution to the [Multi-step form challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/multistep-form-YVAnSdqQBJ). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
 ## Table of contents
 
@@ -27,7 +27,7 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![Screenshot of completed project](./completed.png)
 
 ### Links
 
@@ -45,11 +45,11 @@ Users should be able to:
 
 ### What I learned
 
-This project let me practice using TailwindCSS. I also practiced more with breaking down a project into components. 
+This project let me practice using TailwindCSS. I also practiced more with breaking down a project into components.
 
 ### Continued development
 
-In future projects I'd like to continue to use TailwindCSS. I also would like to continue to practice breaking down projects into components. In this project I believe I could have written the components in a more readable way. 
+In future projects I'd like to continue to use TailwindCSS. I also would like to continue to practice breaking down projects into components. In this project I believe I could have written the components in a more readable way.
 
 ### Useful resources
 
